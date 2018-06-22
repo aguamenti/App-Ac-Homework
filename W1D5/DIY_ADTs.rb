@@ -39,3 +39,37 @@ class Queue #FIFO
     @queue_arr.first
   end
 end
+
+
+class Map
+  attr_reader :map_arr
+
+  def initialize
+    @map_arr = []
+  end
+
+  def set(key, value)
+    key_idx = nil
+    @map_arr.each_with_index do |pair, idx|
+      key_idx = idx if pair.first == key
+    end
+
+    key_idx ? @map_arr[key_idx] = [key, value] : @map_arr << [key, value]
+    @map_arr
+  end
+
+  def get(key)
+    @map_arr.each {|pair| return pair.last if pair.first == key}
+    nil
+  end
+
+  def delete(key)
+    val = get(key)
+    @map_arr.select! {|pair| pair.first != key}
+    val
+  end
+
+  def show
+
+  end
+end
