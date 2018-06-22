@@ -69,7 +69,11 @@ class Map
     val
   end
 
-  def show
+  def deep_dup(arr)
+    arr.map { |el| el.is_a?(Array) ? deep_dup(el) : el }
+  end
 
+  def show
+    deep_dup(@map_arr)
   end
 end
