@@ -1,3 +1,4 @@
+require 'byebug'
 class Board
   attr_accessor :cups
 
@@ -22,35 +23,43 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    # stones = cups[start_pos]
+    # cups[start_pos] = []
+    #
+    # current_idx = start_pos
+    #
+    # until stones.empty?
+    #   current_idx += 1
+    #   current_idx = 0 if current_idx > 13
+    #   if current_idx == 6
+    #     @cups[6] << stones.pop if current_player_name == @name1
+    #   elsif current_idx == 13
+    #     @cups[13] << stones.pop if current_player_name == @name2
+    #   else
+    #     @cups[current_idx] << stones.pop
+    #   end
+    # end
+    #
+    # render
+    # next_turn(current_idx)
+
+##### a/A's SOLUTION ABOVE, OWN SOLUTION BELOW
+
     stones = cups[start_pos]
     cups[start_pos] = []
-
-    # if current_player_name == @name1
-    #   others_cups = (7..13).to_a
-    # else
-    #   others_cups = (0..6).to_a
-    # end
 
     current_idx = start_pos
 
     until stones.empty?
-      # current_idx += 1
-      # cups[current_idx] << stones.shift unless others_cups.include?(current_idx)
-
       current_idx += 1
-      current_idx = 0 if current_idx > 13
-      # places stones in the correct current player's cups
-      if current_idx == 6
-        @cups[6] << stones.pop if current_player_name == @name1
-      elsif current_idx == 13
-        @cups[13] << stones.pop if current_player_name == @name2
-      else
-        @cups[current_idx] << stones.pop
-      end
-    end
+      current_idx = current_idx % 13 - 1 if current_idx > 13
 
+      current_player_name == @name1 ? others_store = 13 : others_store = 6
+      cups[current_idx] << stones.shift unless others_store == current_idx
+    end
     render
     next_turn(current_idx)
+
   end
 
   def next_turn(ending_cup_idx)
