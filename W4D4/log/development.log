@@ -335,3 +335,11 @@ Processing by UsersController#new as HTML
 Completed 200 OK in 34ms (Views: 33.1ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/session/new" for 127.0.0.1 at 2018-07-12 00:02:07 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.4ms)
+  Rendered sessions/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.0ms)
+
+
